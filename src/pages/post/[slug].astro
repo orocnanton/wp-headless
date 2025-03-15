@@ -1,0 +1,145 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import RelatedPosts from '../../components/RelatedPosts.astro';
+import { getPosts, getPost, getRelatedPosts } from '../../lib/api';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const post = await getPost(slug);
+
+// Obtener categorías del post actual para buscar relacionados
+const categoryIds = post._embedded?.['wp:term']?.[0]?.map(cat => cat.id) || [];
+
+// Obtener posts relacionados
+const relatedPosts = await getRelatedPosts(post.id, categoryIds, 6);
+---
+
+<Layout title={post.title.rendered}>
+  <article class="max-w-3xl mx-auto">
+    <h1 class="text-3xl font-bold mb-2" set:html={post.title.rendered}></h1>
+    <div class="text-gray-500 mb-4">
+      <span>Publicado el: {new Date(post.date).toLocaleDateString()}</span>
+    </div>
+    
+    <div class="flex flex-wrap gap-2 mb-8">
+      {post._embedded?.['wp:term']?.[0]?.map((category) => (
+        <span class="bg-accent/10 text-accent text-sm px-3 py-1 rounded-full">
+          {category.name}
+        </span>
+      ))}
+    </div>
+    
+    {post._embedded?.['wp:featuredmedia']?.[0] && (
+      <img 
+        src={post._embedded['wp:featuredmedia'][0].source_url} 
+        alt={post.title.rendered}
+        class="w-full h-auto rounded-lg mb-8"
+      />
+    )}
+    
+    <div class="content-styles" set:html={post.content.rendered}></div>
+    
+    <!-- Sección de posts relacionados -->
+    {relatedPosts && relatedPosts.length > 0 && (
+      <div class="mt-16 border-t pt-12 border-gray-200">
+        <RelatedPosts posts={relatedPosts} />
+      </div>
+    )}
+  </article>
+</Layout>
+
+<style>
+  /* Estilos básicos para reemplazar los del plugin de typography */
+  .content-styles {
+    color: #374151;
+    max-width: 65ch;
+    font-size: 1.125rem;
+    line-height: 1.75;
+  }
+  
+  .content-styles h1, 
+  .content-styles h2, 
+  .content-styles h3, 
+  .content-styles h4 {
+    color: #111827;
+    font-weight: 600;
+    line-height: 1.25;
+    margin-top: 2em;
+    margin-bottom: 1em;
+  }
+  
+  .content-styles h1 {
+    font-size: 2.25rem;
+  }
+  
+  .content-styles h2 {
+    font-size: 1.875rem;
+  }
+  
+  .content-styles h3 {
+    font-size: 1.5rem;
+  }
+  
+  .content-styles h4 {
+    font-size: 1.25rem;
+  }
+  
+  .content-styles p,
+  .content-styles ul,
+  .content-styles ol {
+    margin-top: 1.25em;
+    margin-bottom: 1.25em;
+  }
+  
+  .content-styles ul,
+  .content-styles ol {
+    padding-left: 1.625rem;
+  }
+  
+  .content-styles li {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+  
+  .content-styles ul > li {
+    list-style-type: disc;
+  }
+  
+  .content-styles ol > li {
+    list-style-type: decimal;
+  }
+  
+  .content-styles a {
+    color: #4f46e5;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+  }
+  
+  .content-styles a:hover {
+    color: #6366f1;
+  }
+  
+  .content-styles blockquote {
+    font-style: italic;
+    color: #6b7280;
+    border-left-width: 4px;
+    border-left-color: #e5e7eb;
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+  }
+  
+  .content-styles img {
+    border-radius: 0.5rem;
+    margin: 2rem auto;
+    max-width: 100%;
+    height: auto;
+  }
+</style>

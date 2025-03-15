@@ -1,0 +1,95 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getLegalPages, getLegalPage } from '../../lib/api';
+
+export async function getStaticPaths() {
+  const legalPages = await getLegalPages();
+  
+  return legalPages.map((page) => ({
+    params: { slug: page.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const page = await getLegalPage(slug);
+
+// Si no hay página, redirigimos a 404 (el usuario debe crear esta página)
+if (!page) {
+  return Astro.redirect('/404');
+}
+---
+
+<Layout title={page.title.rendered}>
+  <div class="max-w-4xl mx-auto py-8">
+    <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 mb-6">
+      <div class="p-8 md:p-12">
+        <h1 class="text-3xl font-bold text-gray-900 mb-8" set:html={page.title.rendered}></h1>
+        
+        <div class="content-styles" set:html={page.content.rendered}></div>
+      </div>
+    </div>
+    
+    <div class="text-sm text-gray-500 text-center mt-8">
+      <p>Última actualización: {new Date(page.modified).toLocaleDateString('es-ES', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      })}</p>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  /* Estilos para el contenido de la página legal */
+  .content-styles {
+    color: #374151;
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+  
+  .content-styles h2 {
+    color: #111827;
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .content-styles h3 {
+    color: #111827;
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .content-styles p {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .content-styles ul, .content-styles ol {
+    padding-left: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .content-styles ul li {
+    list-style-type: disc;
+    margin-bottom: 0.5rem;
+  }
+  
+  .content-styles ol li {
+    list-style-type: decimal;
+    margin-bottom: 0.5rem;
+  }
+  
+  .content-styles a {
+    color: #4f46e5;
+    text-decoration: underline;
+  }
+  
+  .content-styles a:hover {
+    color: #6366f1;
+  }
+</style>
