@@ -2,14 +2,199 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Acerca de - Oraciones Cristianas">
-  <div class="max-w-3xl mx-auto py-12">
-    <h1 class="text-4xl font-bold text-center mb-8">Acerca de Nosotros</h1>
+<Layout title="Sobre Nosotros - Oraciones Cristianas">
+  <div class="max-w-4xl mx-auto py-8">
+    <!-- Encabezado de la página con más espacio -->
+    <section class="mb-24">
+      <div class="text-center">
+        <h1 class="text-4xl font-extrabold text-gray-900 leading-tight sm:text-5xl mb-8">
+          Sobre Nosotros
+        </h1>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Conoce nuestra misión y el equipo detrás de Oraciones Cristianas
+        </p>
+      </div>
+    </section>
     
-    <div class="prose prose-lg mx-auto">
-      <p>Esta es una página de ejemplo para verificar que la generación de páginas estáticas funciona correctamente.</p>
+    <!-- Nuestra historia - mejorando espaciado interno -->
+    <section class="mb-24">
+      <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+        <div class="p-8 md:p-14">
+          <h2 class="text-2xl font-bold text-gray-900 mb-8">Nuestra Historia</h2>
+          
+          <div class="prose max-w-none text-gray-600 space-y-6">
+            <p>Oraciones Cristianas nació con la misión de proporcionar un refugio espiritual en línea donde las personas puedan encontrar paz, consuelo y conexión a través de la oración. En un mundo cada vez más acelerado y lleno de distracciones, creamos este espacio para fomentar momentos de reflexión y acercamiento a Dios.</p>
+            
+            <p>Lo que comenzó como un pequeño proyecto personal en 2020, ha crecido hasta convertirse en una comunidad de fieles que comparten su fe y encuentran apoyo espiritual a través de nuestras colecciones de oraciones cuidadosamente seleccionadas.</p>
+            
+            <p>Nos dedicamos a ofrecer oraciones para todas las situaciones de la vida, desde momentos de alegría y agradecimiento hasta tiempos de dificultad donde se necesita consuelo y fortaleza.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Nuestra misión - mejorando gaps entre cards y espaciado interno -->
+    <section class="mb-24">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 p-10">
+          <div class="flex items-center justify-center w-16 h-16 rounded-full bg-primary-100 mb-8">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4" />
+            </svg>
+          </div>
+          
+          <h2 class="text-xl font-bold text-gray-900 mb-6">Nuestra Misión</h2>
+          
+          <p class="text-gray-600">
+            Nuestra misión es proporcionar un recurso espiritual accesible para todos los que buscan fortalecer su relación con Dios a través de la oración. Creemos que la oración tiene el poder de transformar vidas, sanar corazones y unir comunidades en fe.
+          </p>
+          
+          <ul class="mt-8 space-y-4 text-gray-600">
+            <li class="flex items-start">
+              <svg class="h-5 w-5 text-primary-500 mr-3 mt-1 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              Ofrecer una colección completa de oraciones para diferentes situaciones
+            </li>
+            <li class="flex items-start">
+              <svg class="h-5 w-5 text-primary-500 mr-3 mt-1 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              Crear un ambiente de paz y reflexión espiritual
+            </li>
+            <li class="flex items-start">
+              <svg class="h-5 w-5 text-primary-500 mr-3 mt-1 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              Fomentar la comunidad y el apoyo mutuo entre creyentes
+            </li>
+          </ul>
+        </div>
+        
+        <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 p-10">
+          <div class="flex items-center justify-center w-16 h-16 rounded-full bg-primary-100 mb-8">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 17v-6" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v2" />
+            </svg>
+          </div>
+          
+          <h2 class="text-xl font-bold text-gray-900 mb-6">Nuestros Valores</h2>
+          
+          <div class="space-y-6 text-gray-600">
+            <div>
+              <h3 class="font-semibold text-gray-900 mb-2">Fidelidad</h3>
+              <p>Nos mantenemos fieles a las enseñanzas cristianas y a la tradición espiritual que ha guiado a creyentes durante siglos.</p>
+            </div>
+            
+            <div>
+              <h3 class="font-semibold text-gray-900 mb-2">Inclusividad</h3>
+              <p>Acogemos a personas de todos los trasfondos, denominaciones y etapas de su camino espiritual.</p>
+            </div>
+            
+            <div>
+              <h3 class="font-semibold text-gray-900 mb-2">Autenticidad</h3>
+              <p>Promovemos una relación genuina con Dios, fomentando la sinceridad en la oración y en la vida espiritual.</p>
+            </div>
+            
+            <div>
+              <h3 class="font-semibold text-gray-900 mb-2">Servicio</h3>
+              <p>Estamos comprometidos a servir a nuestra comunidad proporcionando recursos que nutran el alma y fortalezcan la fe.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Nuestro equipo - mejorando espaciado -->
+    <section class="mb-24">
+      <h2 class="text-2xl font-bold text-gray-900 mb-12 text-center">Nuestro Equipo</h2>
       
-      <p>Si puedes ver esta página, significa que la estructura de archivos y la configuración de Astro están funcionando correctamente para páginas estáticas.</p>
-    </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100">
+          <div class="p-8 text-center">
+            <div class="w-28 h-28 rounded-full bg-primary-100 mx-auto mb-6 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </div>
+            
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Laura Martínez</h3>
+            <p class="text-primary-600 mb-4">Fundadora</p>
+            
+            <p class="text-gray-600 text-sm">
+              Apasionada por compartir la palabra de Dios y crear espacios digitales para el crecimiento espiritual.
+            </p>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100">
+          <div class="p-8 text-center">
+            <div class="w-28 h-28 rounded-full bg-primary-100 mx-auto mb-6 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </div>
+            
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Carlos Rodríguez</h3>
+            <p class="text-primary-600 mb-4">Editor de Contenido</p>
+            
+            <p class="text-gray-600 text-sm">
+              Con formación en teología, selecciona y adapta las oraciones para asegurar su precisión y relevancia espiritual.
+            </p>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100">
+          <div class="p-8 text-center">
+            <div class="w-28 h-28 rounded-full bg-primary-100 mx-auto mb-6 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </div>
+            
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Ana García</h3>
+            <p class="text-primary-600 mb-4">Desarrolladora Web</p>
+            
+            <p class="text-gray-600 text-sm">
+              Responsable de crear una experiencia digital accesible y significativa para nuestra comunidad de oración.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Únete a nosotros - ajustando espaciado interno -->
+    <section class="mb-14">
+      <div class="bg-primary-50 rounded-2xl p-10 md:p-14">
+        <div class="text-center mb-10">
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">Únete a Nuestra Comunidad</h2>
+          <p class="text-lg text-gray-700 max-w-2xl mx-auto">
+            Sé parte de nuestra comunidad de oración y recibe inspiración diaria para tu camino espiritual.
+          </p>
+        </div>
+        
+        <div class="max-w-md mx-auto">
+          <form class="flex flex-col sm:flex-row gap-4">
+            <input 
+              type="email" 
+              placeholder="Tu email" 
+              class="px-5 py-3 rounded-lg flex-1 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500"
+              required
+            />
+            <button 
+              type="submit"
+              class="px-6 py-3 rounded-lg bg-primary-600 hover:bg-primary-700 text-white font-medium transition-colors"
+            >
+              Suscribirme
+            </button>
+          </form>
+          <p class="text-xs text-gray-500 text-center mt-4">
+            Al suscribirte, aceptas recibir comunicaciones sobre nuestro contenido y recursos.
+          </p>
+        </div>
+      </div>
+    </section>
   </div>
 </Layout>
