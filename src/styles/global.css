@@ -69,7 +69,8 @@
 
 /* Estilos para la nueva paleta inspirada en Chapel */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
 }
 
 .section-title {
@@ -153,7 +154,7 @@ h1, h2, h3, h4, h5, h6 {
 .content-styles h2,
 .content-styles h3,
 .content-styles h4 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Montserrat', sans-serif;
   color: #181818;
 }
 
