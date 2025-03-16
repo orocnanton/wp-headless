@@ -23,11 +23,15 @@ export async function getOracionesCategoriaId() {
   return oracionesCategoriaId;
 }
 
-// Función modificada para obtener solo posts de la categoría Oraciones cristianas
-// con soporte para paginación
-export async function getPosts(page = 1, perPage = 12) {
-  const categoriaId = await getOracionesCategoriaId();
-  return getPostsByCategoryAndChildren(categoriaId, page, perPage);
+// Modifica la función getPosts para aceptar parámetros de paginación
+export async function getPosts(page = 1, perPage = 10) {
+  try {
+    const response = await fetch(`${API_URL}/posts?_embed=true&per_page=${perPage}&page=${page}`);
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching posts:', error);
+    return [];
+  }
 }
 
 // Mejora la función getPost con manejo de errores

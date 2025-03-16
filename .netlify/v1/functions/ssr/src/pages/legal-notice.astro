@@ -1,0 +1,14 @@
+---
+import { getLegalPage } from '../lib/api';
+
+// Buscar directamente la página de aviso legal con el slug exacto
+const legalNoticePage = await getLegalPage('aviso-legal');
+
+// Si existe la página, redirigimos a ella
+if (legalNoticePage) {
+  return Astro.redirect(`/legal/${legalNoticePage.slug}`);
+} else {
+  // Si no existe, redirigimos a la página principal
+  return Astro.redirect('/');
+}
+---

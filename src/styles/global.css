@@ -52,6 +52,21 @@
   }
 }
 
+/* Clases de utilidad para reemplazar clases de Tailwind problemáticas */
+.md-w-third {
+  @media (min-width: 768px) {
+    width: 33.333333%;
+  }
+}
+
+.md-w-two-thirds {
+  @media (min-width: 768px) {
+    width: 66.666667%;
+  }
+}
+
+/* Puedes añadir más clases utilitarias según sea necesario */
+
 /* Estilos para la nueva paleta inspirada en Chapel */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Cormorant Garamond', serif;

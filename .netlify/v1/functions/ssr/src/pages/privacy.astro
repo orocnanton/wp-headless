@@ -1,0 +1,14 @@
+---
+import { getLegalPage } from '../lib/api';
+
+// Buscar directamente la página de políticas de privacidad con el slug exacto
+const privacyPage = await getLegalPage('politica-de-privacidad');
+
+// Si existe la página, redirigimos a ella
+if (privacyPage) {
+  return Astro.redirect(`/legal/${privacyPage.slug}`);
+} else {
+  // Si no existe, redirigimos a la página Acerca de
+  return Astro.redirect('/about');
+}
+---

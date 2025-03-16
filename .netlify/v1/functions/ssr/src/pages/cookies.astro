@@ -1,0 +1,14 @@
+---
+import { getLegalPage } from '../lib/api';
+
+// Buscar directamente la página de políticas de cookies con el slug exacto
+const cookiesPage = await getLegalPage('politica-de-cookies');
+
+// Si existe la página, redirigimos a ella
+if (cookiesPage) {
+  return Astro.redirect(`/legal/${cookiesPage.slug}`);
+} else {
+  // Si no existe, redirigimos a la página principal
+  return Astro.redirect('/');
+}
+---
