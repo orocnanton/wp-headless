@@ -76,7 +76,6 @@ const {
 </div>
 
 <script define:vars={{ initialPerPage: perPage, categoryId: category }}>
-  // ...Código similar al de blog.astro pero reutilizable para cualquier página...
   // Variables para la paginación
   let currentPage = 1;
   let totalPages = 1;
@@ -90,18 +89,114 @@ const {
   const currentPageIndicator = document.getElementById('current-page');
   const loadingIndicator = document.getElementById('loading-indicator');
   
-  // URL base de la API de WP
-  const apiUrl = 'https://tu-wordpress.com/wp-json/wp/v2'; // Reemplaza con tu URL de WordPress
+  // URL base de la API de WP - CORREGIDA para que coincida con api.js
+  const apiUrl = 'https://rezacadadia.com/wp-json/wp/v2';
   
   // Deshabilitar el botón de anterior en la primera página
   loadPrevBtn.disabled = true;
   
   // Función para cargar posts con filtro opcional de categoría
   async function loadPosts(page) {
-    // ... implementación similar a blog.astro ...
-    // con la opción de filtrar por categoryId si está definido
+    if (isLoading) return;
+    
+    isLoading = true;
+    showLoading(true);
+    
+    try {
+      // Construir URL con opciones de categoría si es necesario
+      let url = `${apiUrl}/posts?_embed=true&per_page=${perPage}&page=${page}`;
+      if (categoryId) {
+        url += `&categories=${categoryId}`;
+      }
+      
+      const response = await fetch(url);
+      
+      // Obtener el número total de páginas del header
+      totalPages = parseInt(response.headers.get('X-WP-TotalPages') || '1');
+      
+      if (response.ok) {
+        const posts = await response.json();
+        renderPosts(posts);
+        updatePaginationControls();
+      } else {
+        console.error('Error al cargar los posts:', response.status);
+      }
+    } catch (error) {
+      console.error('Error en la petición:', error);
+    } finally {
+      isLoading = false;
+      showLoading(false);
+    }
   }
   
-  // Event listeners y configuración inicial
-  // ... similar a blog.astro
+  // Función para renderizar posts
+  function renderPosts(posts) {
+    // Limpiar el contenedor
+    postsContainer.innerHTML = '';
+    
+    // Crear y añadir cada post
+    posts.forEach(post => {
+      const postCard = document.createElement('div');
+      postCard.className = 'post-card group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all border border-gray-100';
+      
+      // ...código para crear el HTML del post...
+      
+      // Añadir el HTML al contenedor
+      postsContainer.appendChild(postCard);
+    });
+  }
+  
+  // Función para actualizar controles de paginación
+  function updatePaginationControls() {
+    loadPrevBtn.disabled = currentPage <= 1;
+    loadNextBtn.disabled = currentPage >= totalPages;
+    currentPageIndicator.textContent = `Página ${currentPage} de ${totalPages}`;
+  }
+  
+  // Función para mostrar/ocultar indicador de carga
+  function showLoading(show) {
+    if (loadingIndicator) {
+      if (show) {
+        loadingIndicator.classList.remove('hidden');
+      } else {
+        loadingIndicator.classList.add('hidden');
+      }
+    }
+  }
+  
+  // Event listeners para botones de paginación
+  if (loadPrevBtn && loadNextBtn) {
+    loadPrevBtn.addEventListener('click', () => {
+      if (currentPage > 1) {
+        currentPage--;
+        loadPosts(currentPage);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+    
+    loadNextBtn.addEventListener('click', () => {
+      if (currentPage < totalPages) {
+        currentPage++;
+        loadPosts(currentPage);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  }
+  
+  // Inicializar carga de datos
+  document.addEventListener('DOMContentLoaded', async () => {
+    // Obtener total de páginas en la carga inicial
+    try {
+      let url = `${apiUrl}/posts?per_page=${perPage}&page=1`;
+      if (categoryId) {
+        url += `&categories=${categoryId}`;
+      }
+      
+      const response = await fetch(url);
+      totalPages = parseInt(response.headers.get('X-WP-TotalPages') || '1');
+      updatePaginationControls();
+    } catch (error) {
+      console.error('Error al obtener total de páginas:', error);
+    }
+  });
 </script>
